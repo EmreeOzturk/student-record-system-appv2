@@ -2,26 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Card, Grid, Button, Input } from '@geist-ui/core';
 import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 const PersonalInformation = ({ id }: { id: string }) => {
-    const [studentInformation, setStudentInformation] =
-        useState<StudentInformation>();
+    const [instructorInformation, setInstructorInformation] =
+        useState<InstructorInformation>();
     const [editMode, setEditMode] = useState<boolean>(false);
     const [newValues, setNewValues] = useState({});
     useEffect(() => {
-        getStudentInformation();
+        getInstructorInformation();
     }, []);
-    const getStudentInformation = async () => {
-        const response = await fetch(`/api/student/getInformation/${id}`);
+    const getInstructorInformation = async () => {
+        const response = await fetch(`/api/instructor/getInformation/${id}`);
         const data = await response.json();
-        setStudentInformation(data[0]);
+        console.log(data);
+        setInstructorInformation(data[0]);
     };
 
-    const updateStudentInformation = async () => {
-        setNewValues({
-            ...newValues,
-            id: studentInformation?.id,
-        });
+    const updateInstructorInformation = async () => {
+        setNewValues(prev => ({
+            ...prev,
+            id: instructorInformation?.id,
+        }));
         console.log(newValues);
-        const response = await fetch(`/api/student/updateInformation`, {
+        const response = await fetch(`/api/instructor/updateInformation`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -31,44 +32,51 @@ const PersonalInformation = ({ id }: { id: string }) => {
         const data = await response.json();
         console.log(data);
         if (data.success) {
-            setStudentInformation({
-                ...studentInformation,
+            setInstructorInformation({
+                ...instructorInformation,
                 ...newValues,
-            } as StudentInformation);
+            } as InstructorInformation);
             setEditMode(false);
         }
-
-        getStudentInformation();
+        getInstructorInformation();
         setEditMode(false);
     };
-
     return (
         <Card w="52%" mx="auto" mt={1} shadow hoverable type="default">
             <Card.Content>
-                {studentInformation && (
+                {instructorInformation && (
                     <Grid.Container gap={2}>
                         <Grid xs={24} md={12}>
                             <p>
-                                <b>Student ID:</b> {studentInformation?.id}
+                                <b>Instructor ID:</b>{' '}
+                                {instructorInformation?.id}
                             </p>
                         </Grid>
                         <Grid xs={24} md={12}>
                             <p>
                                 <b>First Name:</b>{' '}
-                                {studentInformation?.first_name}
+                                {instructorInformation?.first_name}
                             </p>
                         </Grid>
                         <Grid xs={24} md={12}>
                             <p>
                                 <b>Last Name:</b>{' '}
-                                {studentInformation?.last_name}
+                                {instructorInformation?.last_name}
+                            </p>
+                        </Grid>
+                        <Grid xs={24} md={12}>
+                            <p>
+                                <b>Birth Date:</b>{' '}
+                                {new Date(
+                                    instructorInformation?.birth_date
+                                ).toLocaleDateString()}
                             </p>
                         </Grid>
                         <Grid xs={24} md={12}>
                             <p>
                                 <b>Gender:</b>{' '}
-                                {studentInformation?.gender === 'm'
-                                    ? 'Male '
+                                {instructorInformation?.gender === 'm'
+                                    ? 'Male'
                                     : 'Female'}
                             </p>
                         </Grid>
@@ -79,51 +87,20 @@ const PersonalInformation = ({ id }: { id: string }) => {
                                     <Input
                                         htmlType="email"
                                         type="success"
-                                        defaultValue={studentInformation?.email}
                                         onChange={e =>
                                             setNewValues({
                                                 ...newValues,
                                                 email: e.target.value,
                                             })
                                         }
-                                    />
-                                </p>
-                            ) : (
-                                <p>
-                                    <b>Email:</b> {studentInformation?.email}
-                                </p>
-                            )}
-                        </Grid>
-                        <Grid xs={24} md={12}>
-                            <p>
-                                <b>Birth Date:</b>{' '}
-                                {new Date(
-                                    studentInformation?.birth_date
-                                ).toLocaleDateString()}
-                            </p>
-                        </Grid>
-                        <Grid xs={24} md={12}>
-                            {editMode ? (
-                                <p>
-                                    <b>Address:</b>{' '}
-                                    <Input
-                                        htmlType="text"
-                                        type="success"
-                                        defaultValue={
-                                            studentInformation?.address
-                                        }
-                                        onChange={e =>
-                                            setNewValues({
-                                                ...newValues,
-                                                address: e.target.value,
-                                            })
+                                        initialValue={
+                                            instructorInformation?.email
                                         }
                                     />
                                 </p>
                             ) : (
                                 <p>
-                                    <b>Address:</b>{' '}
-                                    {studentInformation?.address}
+                                    <b>Email:</b> {instructorInformation?.email}
                                 </p>
                             )}
                         </Grid>
@@ -132,35 +109,29 @@ const PersonalInformation = ({ id }: { id: string }) => {
                                 <p>
                                     <b>Phone:</b>{' '}
                                     <Input
-                                        htmlType="text"
+                                        htmlType="tel"
                                         type="success"
-                                        defaultValue={studentInformation?.phone}
                                         onChange={e =>
                                             setNewValues({
                                                 ...newValues,
                                                 phone: e.target.value,
                                             })
                                         }
+                                        initialValue={
+                                            instructorInformation?.phone
+                                        }
                                     />
                                 </p>
                             ) : (
                                 <p>
-                                    <b>Phone:</b> {studentInformation?.phone}
+                                    <b>Phone:</b> {instructorInformation?.phone}
                                 </p>
                             )}
                         </Grid>
                         <Grid xs={24} md={12}>
                             <p>
-                                <b>Enrollment Date:</b>{' '}
-                                {new Date(
-                                    studentInformation?.enrollment_date
-                                ).toLocaleDateString()}
-                            </p>
-                        </Grid>
-                        <Grid xs={24} md={12}>
-                            <p>
-                                <b>Department Name:</b>{' '}
-                                {studentInformation?.department_name}
+                                <b>Department:</b>{' '}
+                                {instructorInformation?.department_name}
                             </p>
                         </Grid>
                     </Grid.Container>
@@ -171,7 +142,7 @@ const PersonalInformation = ({ id }: { id: string }) => {
                     <Grid.Container justify="center" gap={2}>
                         <Grid xs={12} md={6}>
                             <Button
-                                onClick={() => updateStudentInformation()}
+                                onClick={() => updateInstructorInformation()}
                                 type="success"
                                 icon={<AiOutlineCheck />}
                             >

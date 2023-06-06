@@ -57,3 +57,33 @@ type AddInstructorData = {
     phone: string;
     department_id: string;
 };
+
+type InstructorInformation = {
+    id: number;
+    first_name: string;
+    last_name: string;
+    birth_date: Date;
+    gender: string;
+    email: string;
+    phone: string;
+    department_name: string;
+};
+
+type InstructorCourses = {
+    id: number;
+    code: string;
+    name: string;
+    description: string;
+    credit: number;
+    hours: number;
+    department_id: number;
+    sub_course_id: number;
+};
+
+type CourseStudents = {
+    student_id: number;
+    first_name: string;
+    last_name: string;
+    gender: string;
+    name: string;
+};

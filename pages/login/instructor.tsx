@@ -1,7 +1,10 @@
 import { Grid, Input, Text, Button } from '@geist-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 const InstructorLogin = () => {
+    const [id, setId] = useState<string>('');
+    const router = useRouter();
     return (
         <Grid.Container>
             <Grid justify="center" xs={24} md={12}>
@@ -28,6 +31,8 @@ const InstructorLogin = () => {
                         type="secondary"
                         required
                         mb={2}
+                        value={id}
+                        onChange={e => setId(e.target.value)}
                     />
                     <Input
                         width="300px"
@@ -36,7 +41,11 @@ const InstructorLogin = () => {
                         required
                         mb={2}
                     />
-                    <Button w="150px" type="success">
+                    <Button
+                        onClick={() => router.push(`/instructor/${id}`)}
+                        w="150px"
+                        type="success"
+                    >
                         Login
                     </Button>
                 </form>
