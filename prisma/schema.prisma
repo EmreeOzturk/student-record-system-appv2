@@ -1,0 +1,147 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model course_instructors {
+  course_id     Int
+  instructor_id Int
+  courses       courses     @relation(fields: [course_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  instructors   instructors @relation(fields: [instructor_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([course_id, instructor_id])
+}
+
+model course_schedule {
+  id            Int          @id @default(autoincrement())
+  course_id     Int?
+  instructor_id Int?
+  room          String?      @db.VarChar(20)
+  day_of_week   Int?
+  start_time    DateTime?    @db.Time(6)
+  end_time      DateTime?    @db.Time(6)
+  courses       courses?     @relation(fields: [course_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  instructors   instructors? @relation(fields: [instructor_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model courses {
+  id                 Int                  @id @default(autoincrement())
+  code               String?              @db.VarChar(20)
+  name               String?              @db.VarChar(50)
+  description        String?
+  credit             Int?
+  hours              Int?
+  department_id      Int?
+  sub_course_id      Int?
+  course_instructors course_instructors[]
+  course_schedule    course_schedule[]
+  departments        departments?         @relation(fields: [department_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sub_courses        sub_courses?         @relation(fields: [sub_course_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  grades             grades[]
+  student_courses    student_courses[]
+}
+
+model departments {
+  id          Int           @id @default(autoincrement())
+  name        String?       @db.VarChar(50)
+  faculty_id  Int?
+  courses     courses[]
+  faculties   faculties?    @relation(fields: [faculty_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  instructors instructors[]
+  students    students[]
+}
+
+model events {
+  id          Int        @id @default(autoincrement())
+  title       String?    @db.VarChar(255)
+  description String?
+  event_date  DateTime?  @db.Date
+  location    String?    @db.VarChar(255)
+  students    students[]
+}
+
+model faculties {
+  id          Int           @id @default(autoincrement())
+  name        String?       @db.VarChar(50)
+  departments departments[]
+}
+
+model grades {
+  student_id    Int?
+  course_id     Int?
+  midterm_grade Int?
+  final_grade   Int?
+  average_grade Int?
+  id            Int       @id @default(autoincrement())
+  quiz          Int?
+  homework      Int?
+  courses       courses?  @relation(fields: [course_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  students      students? @relation(fields: [student_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model instructors {
+  id                     Int                      @id @default(autoincrement())
+  first_name             String?                  @db.VarChar(50)
+  last_name              String?                  @db.VarChar(50)
+  birth_date             DateTime?                @db.Date
+  gender                 String?                  @db.Char(1)
+  email                  String?                  @db.VarChar(100)
+  phone                  String?                  @db.VarChar(20)
+  department_id          Int?
+  course_instructors     course_instructors[]
+  course_schedule        course_schedule[]
+  departments            departments?             @relation(fields: [department_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sub_course_instructors sub_course_instructors[]
+}
+
+model student_courses {
+  student_id Int?
+  course_id  Int?
+  semester   Int?
+  year       Int?
+  id         BigInt    @id @default(autoincrement())
+  courses    courses?  @relation(fields: [course_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  students   students? @relation(fields: [student_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model students {
+  id              Int               @id @default(autoincrement())
+  first_name      String?           @db.VarChar(50)
+  last_name       String?           @db.VarChar(50)
+  gender          String?           @db.Char(1)
+  birth_date      DateTime?         @db.Date
+  address         String?           @db.VarChar(255)
+  email           String?           @db.VarChar(100)
+  phone           String?           @db.VarChar(20)
+  enrollment_date DateTime?         @db.Date
+  department_id   Int?
+  event_id        Int?
+  grades          grades[]
+  student_courses student_courses[]
+  departments     departments?      @relation(fields: [department_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  events          events?           @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model sub_course_instructors {
+  sub_course_id Int
+  instructor_id Int
+  instructors   instructors @relation(fields: [instructor_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sub_courses   sub_courses @relation(fields: [sub_course_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([sub_course_id, instructor_id])
+}
+
+model sub_courses {
+  id                     Int                      @id @default(autoincrement())
+  code                   String?                  @db.VarChar(20)
+  name                   String?                  @db.VarChar(20)
+  description            String?
+  credit                 Int?
+  hours                  Int?
+  courses                courses[]
+  sub_course_instructors sub_course_instructors[]
+}
