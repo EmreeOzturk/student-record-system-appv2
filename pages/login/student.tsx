@@ -24,7 +24,7 @@ const StudentLogin = () => {
                 md={12}
             >
                 <Text h2>Student Login</Text>
-                <form className="form_container">
+                <form className="formBody">
                     <Input
                         width="300px"
                         placeholder="ID"

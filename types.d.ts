@@ -40,3 +40,20 @@ type Events = {
     event_date: Date;
     location: string;
 };
+
+type AllStudentsWithHours = {
+    id: number;
+    first_name: string;
+    last_name: string;
+    total_hours: number;
+};
+
+type AddInstructorData = {
+    first_name: string;
+    last_name: string;
+    birth_date: Date;
+    gender: string;
+    email: string;
+    phone: string;
+    department_id: string;
+};

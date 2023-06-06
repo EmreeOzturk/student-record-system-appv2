@@ -24,3 +24,31 @@
     gap: 10px !important;
     margin-top: 10px;
 }
+.formBody {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+a h4 {
+    color: white !important;
+}
+a h4:hover {
+    color: #aaa !important;
+}
+
+.inputWrapper div {
+    border: none !important;
+    outline: none !important;
+}
+.inputWrapper {
+    margin-bottom: 1rem !important;
+}
+
+.inputWrapper input,
+.inputWrapper select,
+.inputWrapper label,
+.inputWrapper input::placeholder,
+.inputWrapper select::placeholder {
+    color: #333 !important;
+    font-size: 1rem !important;
+}

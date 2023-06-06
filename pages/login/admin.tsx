@@ -1,7 +1,9 @@
 import React from 'react';
 import { Grid, Input, Text, Button } from '@geist-ui/core';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 const AdminLogin = () => {
+    const router = useRouter();
     return (
         <Grid.Container>
             <Grid justify="center" xs={24} md={12}>
@@ -24,7 +26,7 @@ const AdminLogin = () => {
                 md={12}
             >
                 <Text h2>Admin Login</Text>
-                <form className="form_container">
+                <form className="formBody">
                     <Input
                         width="300px"
                         placeholder="ID"
@@ -39,7 +41,11 @@ const AdminLogin = () => {
                         required
                         mb={2}
                     />
-                    <Button w="150px" type="success">
+                    <Button
+                        onClick={() => router.push(`/admin/panel`)}
+                        w="150px"
+                        type="success"
+                    >
                         Login
                     </Button>
                 </form>
