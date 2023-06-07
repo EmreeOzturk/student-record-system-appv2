@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from '@geist-ui/core';
+import { Table, Grid, Spinner } from '@geist-ui/core';
 
 const Events = () => {
     const [events, setEvents] = useState<Event[]>();
@@ -13,6 +13,14 @@ const Events = () => {
         };
         getEvents();
     }, []);
+
+    if (!events) {
+        return (
+            <Grid.Container h={10} justify="center">
+                <Spinner w={3} mt={10} />
+            </Grid.Container>
+        );
+    }
 
     return (
         <div>
