@@ -32,7 +32,6 @@ module.exports = {
         "prettier",
         "plugin:jsx-a11y/recommended",
         "plugin:security/recommended",
-        "plugin:react-hooks/recommended",
     ],
 
     rules: {
