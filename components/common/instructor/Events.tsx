@@ -21,12 +21,11 @@ const Events = () => {
             {
                 method: 'DELETE',
             }
+            
         );
         const data = await response.json();
-        console.log(data);
     };
     const renderAction = (value, rowData, index) => {
-        console.log(rowData);
         const removeHandler = () => {
             deleteEvent(rowData.id);
             const newEvents = [...(events as Event[])];

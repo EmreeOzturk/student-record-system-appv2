@@ -31,7 +31,6 @@ module.exports = {
         "plugin:@typescript-eslint/recommended",
         "prettier",
         "plugin:jsx-a11y/recommended",
-        "plugin:sonarjs/recommended",
         "plugin:security/recommended",
         "plugin:react-hooks/recommended",
     ],

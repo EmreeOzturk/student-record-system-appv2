@@ -14,7 +14,6 @@ const Grades = ({ id }: { id: string }) => {
                 `/api/instructor/getInstructorCourses/${id}`
             );
             const data = await res.json();
-            console.log(data);
             setCourses(data);
         };
 
@@ -24,7 +23,6 @@ const Grades = ({ id }: { id: string }) => {
             );
             const data = await res.json();
             setStudents(data);
-            console.log(data);
         };
 
         getCourses();
@@ -32,8 +30,6 @@ const Grades = ({ id }: { id: string }) => {
     }, [id]);
 
     const updateNotes = async () => {
-        console.log(newNotes);
-        console.log(whichItem);
         const res = await fetch(`/api/instructor/updateNotes/${whichItem}`, {
             method: 'POST',
             headers: {
@@ -42,7 +38,6 @@ const Grades = ({ id }: { id: string }) => {
             body: JSON.stringify(newNotes),
         });
         const data = await res.json();
-        console.log(data);
         setStudents((prev: CourseStudentsWithNotes[]) => {
             return prev?.map(student => {
                 if (student?.grade_id === whichItem) {

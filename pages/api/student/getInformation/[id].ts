@@ -10,7 +10,6 @@ export default async function handler(
         return res.status(405).json({ error: 'Method not allowed' });
     try {
         const id = parseInt(req.query.id as string);
-        console.log(id);
         const data = await prisma.$queryRaw`
         SELECT
         students.id as id,

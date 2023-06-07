@@ -20,7 +20,6 @@ const PersonalInformation = ({ id }: { id: string }) => {
             ...newValues,
             id: studentInformation?.id,
         });
-        console.log(newValues);
         const response = await fetch(`/api/student/updateInformation`, {
             method: 'POST',
             headers: {
@@ -29,7 +28,6 @@ const PersonalInformation = ({ id }: { id: string }) => {
             body: JSON.stringify(newValues),
         });
         const data = await response.json();
-        console.log(data);
         if (data.success) {
             setStudentInformation({
                 ...studentInformation,

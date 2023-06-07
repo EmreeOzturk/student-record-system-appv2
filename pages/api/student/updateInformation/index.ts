@@ -16,7 +16,6 @@ export default async function handler(
                 WHERE id = ${studentId}
             `;
 
-            console.log(student);
 
             res.status(200).json(student);
         } catch (error) {

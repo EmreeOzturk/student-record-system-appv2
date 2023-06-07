@@ -12,7 +12,6 @@ const PersonalInformation = ({ id }: { id: string }) => {
     const getInstructorInformation = async () => {
         const response = await fetch(`/api/instructor/getInformation/${id}`);
         const data = await response.json();
-        console.log(data);
         setInstructorInformation(data[0]);
     };
 
@@ -21,7 +20,6 @@ const PersonalInformation = ({ id }: { id: string }) => {
             ...prev,
             id: instructorInformation?.id,
         }));
-        console.log(newValues);
         const response = await fetch(`/api/instructor/updateInformation`, {
             method: 'POST',
             headers: {
@@ -30,7 +28,6 @@ const PersonalInformation = ({ id }: { id: string }) => {
             body: JSON.stringify(newValues),
         });
         const data = await response.json();
-        console.log(data);
         if (data.success) {
             setInstructorInformation({
                 ...instructorInformation,

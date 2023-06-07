@@ -11,10 +11,8 @@ const AddTeacher = () => {
     //email
     //phone
     //derpartment
-    console.log(data);
 
     const createInsturctor = async () => {
-        console.log(data);
         const res = await fetch('/api/admin/addInstructor', {
             method: 'POST',
             headers: {
@@ -23,7 +21,6 @@ const AddTeacher = () => {
             body: JSON.stringify(data),
         });
         const resData = await res.json();
-        console.log(resData);
     };
     return (
         <Grid.Container

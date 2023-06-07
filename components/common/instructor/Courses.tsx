@@ -9,7 +9,6 @@ const Courses = ({ id }: { id: string }) => {
                 `/api/instructor/getInstructorCourses/${id}`
             );
             const data = await res.json();
-            console.log(data);
             setCourses(data);
         };
 
@@ -17,7 +16,6 @@ const Courses = ({ id }: { id: string }) => {
             const res = await fetch(`/api/instructor/getCourseStudents/${id}`);
             const data = await res.json();
             setStudents(data);
-            console.log(data);
         };
         getCourses();
         getCourseStudents();

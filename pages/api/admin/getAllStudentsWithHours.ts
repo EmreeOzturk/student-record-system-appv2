@@ -27,11 +27,9 @@ export default async function getAllStudentsWithHours(
                     total_hours: Number(student.total_hours),
                 };
             });
-            console.log(response);
 
             return res.status(200).json(response);
         } catch (error) {
-            console.log(error);
             return res.status(500).json({ error: 'Something went wrong' });
         }
     }
