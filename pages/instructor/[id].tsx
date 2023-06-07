@@ -9,7 +9,6 @@ import Events from '@/components/common/instructor/Events';
 const InstructorPage = () => {
     const router = useRouter();
     const { id } = router.query;
-    console.log(id);
     return (
         <Tabs activeClassName="activeClass" initialValue="1" align="center">
             <Tabs.Item label="information" value="1">

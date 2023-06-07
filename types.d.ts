@@ -87,3 +87,23 @@ type CourseStudents = {
     gender: string;
     name: string;
 };
+
+type CourseStudentsWithNotes = {
+    student_id: number;
+    first_name: string;
+    last_name: string;
+    grade_id: number;
+    midterm_grade: number;
+    final_grade: number;
+    quiz: number;
+    homework: number;
+    course_id: number;
+};
+type NewNotes = {
+    student_id: number;
+    course_id: number;
+    midterm_grade: string;
+    final_grade: string;
+    quiz: string;
+    homework: string;
+};

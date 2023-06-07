@@ -28,7 +28,10 @@ const Courses = ({ id }: { id: string }) => {
                 <Collapse
                     shadow
                     key={course?.id}
-                    title={course?.name.toUpperCase()}
+                    title={
+                        course?.name.slice(0, 1).toUpperCase() +
+                        course?.name.slice(1)
+                    }
                 >
                     {students?.map(student => {
                         if (student?.name === course?.name) {

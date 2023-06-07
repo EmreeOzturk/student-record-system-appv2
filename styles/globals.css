@@ -55,10 +55,12 @@ a h4:hover {
 
 .tableHoverEffect {
     transition: 0.18s;
-    /* border :1px solid #aaa; */
     border-radius: 15px;
 }
 .tableHoverEffect:hover {
     cursor: pointer;
     background-color: #eee !important;
+}
+.tableHoverEffect h5 {
+    margin: 0 !important;
 }
