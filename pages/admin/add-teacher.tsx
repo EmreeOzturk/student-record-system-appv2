@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Input, Button, Grid, Spinner } from '@geist-ui/core';
+import { useRouter } from 'next/router';
 const AddTeacher = () => {
     const [data, setData] = useState<AddInstructorData>(
         {} as AddInstructorData
     );
-
+    const router = useRouter();
     const createInsturctor = async () => {
         const res = await fetch('/api/admin/addInstructor', {
             method: 'POST',
@@ -13,6 +14,8 @@ const AddTeacher = () => {
             },
             body: JSON.stringify(data),
         });
+
+        router.push('/admin/panel');
         const resData = await res.json();
     };
 
