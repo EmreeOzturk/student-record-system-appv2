@@ -102,7 +102,7 @@ const AddTeacher = () => {
                     onChange={e =>
                         setData({
                             ...data,
-                            birth_date: e.target.value as Date,
+                            birth_date: e.target.value as any,
                         })
                     }
                 />
