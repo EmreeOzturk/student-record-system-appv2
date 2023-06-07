@@ -38,8 +38,8 @@ const Grades = ({ id }: { id: string }) => {
             body: JSON.stringify(newNotes),
         });
         const data = await res.json();
-        setStudents((prev: CourseStudentsWithNotes[]) => {
-            return prev?.map(student => {
+        setStudents((prev: any) => {
+            return prev?.map((student: any) => {
                 if (student?.grade_id === whichItem) {
                     return {
                         ...student,
