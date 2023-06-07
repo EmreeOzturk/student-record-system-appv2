@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from '@geist-ui/core';
+import { Table, Grid, Spinner } from '@geist-ui/core';
 const ViewStudents = () => {
     const [students, setStudents] = useState<AllStudentsWithHours[]>();
     useEffect(() => {
@@ -9,6 +9,14 @@ const ViewStudents = () => {
                 setStudents(data);
             });
     }, []);
+
+    if (!students) {
+        return (
+            <Grid.Container h={10} justify="center">
+                <Spinner w={3} mt={10} />
+            </Grid.Container>
+        );
+    }
     return (
         <div>
             <Table data={students}>

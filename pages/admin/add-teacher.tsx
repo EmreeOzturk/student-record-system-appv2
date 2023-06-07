@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
-import { Input, Button, Grid, Radio } from '@geist-ui/core';
+import { Input, Button, Grid, Spinner } from '@geist-ui/core';
 const AddTeacher = () => {
     const [data, setData] = useState<AddInstructorData>(
         {} as AddInstructorData
     );
-    //first_name
-    //last_name
-    //birh_date
-    //gender
-    //email
-    //phone
-    //derpartment
 
     const createInsturctor = async () => {
         const res = await fetch('/api/admin/addInstructor', {
@@ -22,6 +15,15 @@ const AddTeacher = () => {
         });
         const resData = await res.json();
     };
+
+    if (!data) {
+        return (
+            <Grid.Container h={10} justify="center">
+                <Spinner w={3} mt={10} />
+            </Grid.Container>
+        );
+    }
+
     return (
         <Grid.Container
             justify="center"
