@@ -19,7 +19,7 @@ const Header = ({
             justify="space-between"
             alignItems="center"
         >
-            <Logo />
+            <Logo themeType={themeType} />
             {
                 // If the user is on the home page, don't show the sign in button
                 router.pathname.startsWith('/student/') ||
