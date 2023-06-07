@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Collapse, Grid, Button, Input } from '@geist-ui/core';
+import { Collapse, Grid, Button, Input, Spinner } from '@geist-ui/core';
 import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 
 const Grades = ({ id }: { id: string }) => {
@@ -53,6 +53,13 @@ const Grades = ({ id }: { id: string }) => {
         setWhichItem(0);
     };
 
+    if (!courses || !students) {
+        return (
+            <Grid.Container h={10} justify="center">
+                <Spinner w={3} mt={10} />
+            </Grid.Container>
+        );
+    }
     return (
         <Collapse.Group w="100%" margin="auto">
             {courses?.map(course => (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Grid, Button, Input } from '@geist-ui/core';
+import { Card, Grid, Button, Input, Spinner } from '@geist-ui/core';
 import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 const PersonalInformation = ({ id }: { id: string }) => {
     const [instructorInformation, setInstructorInformation] =
@@ -38,6 +38,14 @@ const PersonalInformation = ({ id }: { id: string }) => {
         getInstructorInformation();
         setEditMode(false);
     };
+
+    if (!instructorInformation) {
+        return (
+            <Grid.Container h={10} justify="center">
+                <Spinner w={3} mt={10} />
+            </Grid.Container>
+        );
+    }
     return (
         <Card w="52%" mx="auto" mt={1} shadow hoverable type="default">
             <Card.Content>

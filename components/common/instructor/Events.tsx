@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button } from '@geist-ui/core';
+import { Table, Button, Grid, Spinner } from '@geist-ui/core';
 import { BsTrash } from 'react-icons/bs';
 const Events = () => {
     const [events, setEvents] = useState<Event[]>();
@@ -21,7 +21,6 @@ const Events = () => {
             {
                 method: 'DELETE',
             }
-            
         );
         const data = await response.json();
     };
@@ -48,6 +47,14 @@ const Events = () => {
             </Button>
         );
     };
+
+    if (!events) {
+        return (
+            <Grid.Container h={10} justify="center">
+                <Spinner w={3} mt={10} />
+            </Grid.Container>
+        );
+    }
     return (
         <div>
             <Table data={events}>

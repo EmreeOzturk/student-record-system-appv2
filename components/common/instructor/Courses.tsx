@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Collapse, Grid } from '@geist-ui/core';
+import { Collapse, Grid, Spinner } from '@geist-ui/core';
 const Courses = ({ id }: { id: string }) => {
     const [courses, setCourses] = useState<InstructorCourses[]>();
     const [students, setStudents] = useState<CourseStudents[]>();
@@ -20,6 +20,14 @@ const Courses = ({ id }: { id: string }) => {
         getCourses();
         getCourseStudents();
     }, []);
+
+    if (!courses || !students) {
+        return (
+            <Grid.Container h={10} justify="center">
+                <Spinner w={3} mt={10} />
+            </Grid.Container>
+        );
+    }
     return (
         <Collapse.Group w="90%" margin="auto">
             {courses?.map(course => (
