@@ -34,7 +34,7 @@ const AdminLogin = () => {
                         required
                         mb={2}
                     />
-                    <Input
+                    <Input.Password
                         width="300px"
                         placeholder="Password"
                         type="secondary"

@@ -34,7 +34,7 @@ const StudentLogin = () => {
                         value={id}
                         onChange={e => setId(e.target.value)}
                     />
-                    <Input
+                    <Input.Password
                         width="300px"
                         placeholder="Password"
                         type="secondary"
