@@ -24,7 +24,7 @@ const Events = () => {
         );
         const data = await response.json();
     };
-    const renderAction = (value, rowData, index) => {
+    const renderAction = (value:any, rowData:any, index:any) => {
         const removeHandler = () => {
             deleteEvent(rowData.id);
             const newEvents = [...(events as Event[])];
