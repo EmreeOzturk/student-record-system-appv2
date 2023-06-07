@@ -16,10 +16,10 @@ const PersonalInformation = ({ id }: { id: string }) => {
     };
 
     const updateStudentInformation = async () => {
-        setNewValues({
-            ...newValues,
+        setNewValues(prev => ({
+            ...prev,
             id: studentInformation?.id,
-        });
+        }));
         const response = await fetch(`/api/student/updateInformation`, {
             method: 'POST',
             headers: {
@@ -85,6 +85,7 @@ const PersonalInformation = ({ id }: { id: string }) => {
                                     <Input
                                         htmlType="email"
                                         type="success"
+                                        width="72%"
                                         defaultValue={studentInformation?.email}
                                         onChange={e =>
                                             setNewValues({
@@ -118,6 +119,7 @@ const PersonalInformation = ({ id }: { id: string }) => {
                                         defaultValue={
                                             studentInformation?.address
                                         }
+                                        width="70%"
                                         onChange={e =>
                                             setNewValues({
                                                 ...newValues,
@@ -140,6 +142,7 @@ const PersonalInformation = ({ id }: { id: string }) => {
                                     <Input
                                         htmlType="text"
                                         type="success"
+                                        width="74%"
                                         defaultValue={studentInformation?.phone}
                                         onChange={e =>
                                             setNewValues({
@@ -175,7 +178,7 @@ const PersonalInformation = ({ id }: { id: string }) => {
             <Card.Footer className="centerButton">
                 {editMode ? (
                     <Grid.Container justify="center" gap={2}>
-                        <Grid xs={12} md={6}>
+                        <Grid xs={12} md={8}>
                             <Button
                                 onClick={() => updateStudentInformation()}
                                 type="success"
@@ -184,7 +187,7 @@ const PersonalInformation = ({ id }: { id: string }) => {
                                 Save
                             </Button>
                         </Grid>
-                        <Grid xs={12} md={6}>
+                        <Grid xs={12} md={8}>
                             <Button
                                 type="error"
                                 icon={<AiOutlineClose />}

@@ -98,6 +98,7 @@ const PersonalInformation = ({ id }: { id: string }) => {
                                                 email: e.target.value,
                                             })
                                         }
+                                        width="80%"
                                         initialValue={
                                             instructorInformation?.email
                                         }
@@ -116,6 +117,7 @@ const PersonalInformation = ({ id }: { id: string }) => {
                                     <Input
                                         htmlType="tel"
                                         type="success"
+                                        width="70%"
                                         onChange={e =>
                                             setNewValues({
                                                 ...newValues,
@@ -145,7 +147,7 @@ const PersonalInformation = ({ id }: { id: string }) => {
             <Card.Footer className="centerButton">
                 {editMode ? (
                     <Grid.Container justify="center" gap={2}>
-                        <Grid xs={12} md={6}>
+                        <Grid xs={12} md={8}>
                             <Button
                                 onClick={() => updateInstructorInformation()}
                                 type="success"
@@ -154,7 +156,7 @@ const PersonalInformation = ({ id }: { id: string }) => {
                                 Save
                             </Button>
                         </Grid>
-                        <Grid xs={12} md={6}>
+                        <Grid xs={12} md={8}>
                             <Button
                                 type="error"
                                 icon={<AiOutlineClose />}
