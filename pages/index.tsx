@@ -10,12 +10,12 @@ export default function Home() {
     return (
         <Grid.Container className={inter.className}>
             <Head>
-                <title>Next.js + Geist UI</title>
+                <title>Student Record System App</title>
                 <meta
                     name="description"
-                    content="Next.js + Geist UI + TypeScript + ESLint + Prettier"
+                    content="An app to manage student records"
                 />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/logo1.png" />
             </Head>
             <Grid.Container xs={24} md={12} justify="center">
                 <Text h1 className={styles.headerGradientText}>
