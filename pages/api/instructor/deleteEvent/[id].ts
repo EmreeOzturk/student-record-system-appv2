@@ -14,7 +14,20 @@ export default async function handler(
     try {
         const id = parseInt(req.query.id as string);
         const data = await prisma.$queryRaw`
+
+
+
+
+
         DELETE FROM events WHERE id = ${id}`;
+
+
+
+
+
+
+
+
         res.status(200).json(data);
     } catch (error) {
         res.status(500).json({ error: error });

@@ -11,6 +11,13 @@ export default async function handler(
     try {
         const id = parseInt(req.query.id as string);
         const data: StudentGrades[] = await prisma.$queryRaw`
+
+
+
+
+
+
+
         SELECT
         courses.code as course_code,
         courses.name as course_name,
@@ -21,6 +28,13 @@ export default async function handler(
         FROM grades,courses 
         WHERE grades.student_id = ${id} 
         AND grades.course_id = courses.id`;
+
+
+
+
+
+
+
 
         const withAverage = data.map((item: StudentGrades) => {
             return {

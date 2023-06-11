@@ -15,8 +15,18 @@ export default async function handler(
     try {
         const id = parseInt(req.query.id as string);
         const courseDetails = await prisma.$queryRaw`
+
+
+
+
+
     SELECT * FROM courses WHERE id
     IN (SELECT course_id FROM course_instructors WHERE instructor_id = ${id})`;
+
+
+
+
+
 
         res.status(200).json(courseDetails);
     } catch (error) {

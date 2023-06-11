@@ -15,12 +15,24 @@ export default async function handler(
     try {
         const id = parseInt(req.query.id as string);
         const data = await prisma.$queryRaw`
-            SELECT student_id,students.first_name,students.last_name,students.gender , courses.name 
+
+
+
+
+
+            SELECT student_id,students.first_name,students.last_name,
+            students.gender , courses.name 
             FROM student_courses,students,courses WHERE student_courses.course_id 
             IN (SELECT course_id FROM course_instructors 
             WHERE course_instructors.instructor_id = ${id})
             AND student_courses.course_id = courses.id 
             AND student_courses.student_id = students.id`;
+
+
+
+
+
+
 
         res.status(200).json(data);
     } catch (error) {

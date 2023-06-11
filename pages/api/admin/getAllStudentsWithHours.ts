@@ -10,6 +10,11 @@ export default async function getAllStudentsWithHours(
     if (req.method === 'GET') {
         try {
             const data: AllStudentsWithHours[] = await prisma.$queryRaw`
+
+
+
+
+            
         SELECT students.id, students.first_name, students.last_name, SUM(courses.hours)
         as total_hours
         FROM students
@@ -18,6 +23,10 @@ export default async function getAllStudentsWithHours(
         WHERE student_courses.semester = 2
         GROUP BY students.id, students.first_name, students.last_name
         `;
+
+
+
+
 
             const response = data.map((student: AllStudentsWithHours) => {
                 return {

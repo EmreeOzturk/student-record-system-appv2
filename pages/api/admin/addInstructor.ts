@@ -21,12 +21,24 @@ export default async function addInstructor(
         const newDepartmentId = Number(department_id);
         try {
             const data = await prisma.$queryRaw`
+
+
+
+
+
+
             INSERT INTO instructors
             (first_name, last_name, birth_date, gender ,email, phone, department_id)
             VALUES (${first_name}, ${last_name}, 
             ${new Date(
                 birth_date
             )}, ${gender},${email}, ${phone}, ${newDepartmentId})`;
+
+
+            
+
+
+
             return res.status(200).json(data);
         } catch (error) {
             return res.status(500).json({ error: 'Something went wrong' });

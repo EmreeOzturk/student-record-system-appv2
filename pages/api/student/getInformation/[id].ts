@@ -11,6 +11,12 @@ export default async function handler(
     try {
         const id = parseInt(req.query.id as string);
         const data = await prisma.$queryRaw`
+
+
+
+
+
+
         SELECT
         students.id as id,
         students.first_name as first_name,
@@ -25,6 +31,11 @@ export default async function handler(
     
         FROM students , departments 
         WHERE students.id = ${id} AND students.department_id = departments.id`;
+
+
+
+
+
 
         res.status(200).json(data);
     } catch (error: Error | unknown) {

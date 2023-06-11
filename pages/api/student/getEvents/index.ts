@@ -10,8 +10,22 @@ export default async function handler(
         return res.status(405).json({ error: 'Method not allowed' });
     try {
         const data: Events[] = await prisma.$queryRaw`
-        SELECT *
-        FROM events`;
+
+
+
+
+
+
+
+
+        SELECT * FROM events`;
+
+
+
+
+
+
+
 
         const fixDate = data.map((item: Events) => {
             return {
